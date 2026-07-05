@@ -1,0 +1,21 @@
+{
+  "name": "@ready/ui",
+  "version": "0.1.0",
+  "description": "Współdzielone komponenty UI marek *Ready (Gastro/Host/Nails/Fizjo/Barber). Źródło prawdy dla stopki i belki social.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./SiteFooter": "./src/SiteFooter.tsx",
+    "./Icon": "./src/Icon.tsx"
+  },
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "next": ">=15",
+    "react": ">=19",
+    "react-dom": ">=19"
+  }
+}
