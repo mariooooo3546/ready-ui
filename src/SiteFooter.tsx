@@ -5,9 +5,11 @@ import type { FooterConfig, FooterLink, FooterSlots } from "./types";
 /**
  * Wspólna stopka marek *Ready (design GastroReady, motyw per marka).
  *
- * Kolory pochodzą wyłącznie ze zmiennych CSS ustawianych z `cfg.theme`, a
- * layout używa tylko uniwersalnych klas Tailwind + hover przez lokalny <style>.
- * Dzięki temu komponent nie wymaga konfiguracji skanowania Tailwind u konsumenta.
+ * Kolory pochodzą wyłącznie ze zmiennych CSS ustawianych z `cfg.theme`.
+ * Layout: klasy wyglądają jak Tailwind, ale WSZYSTKIE reguły są zdefiniowane
+ * w lokalnym <style> scope'owanym do [data-rf-footer] — Tailwind konsumenta
+ * NIE generuje klas, których konsument sam nie używa (np. md:grid-cols-5),
+ * co przed v0.2.1 rozsypywało stopkę do jednej kolumny (gpsr, host).
  */
 export function SiteFooter({
   cfg,
@@ -41,7 +43,7 @@ export function SiteFooter({
         className="text-white"
         style={rootStyle}
       >
-        {/* Lokalne reguły hover — niezależne od Tailwind konsumenta. */}
+        {/* Pelny CSS stopki — scope [data-rf-footer], zero zaleznosci od Tailwinda konsumenta. */}
         <style>{`
           [data-rf-footer] .rf-link{color:var(--rf-muted);transition:color .15s}
           [data-rf-footer] .rf-link:hover{color:#fff}
@@ -49,6 +51,65 @@ export function SiteFooter({
           [data-rf-footer] .rf-sister:hover{color:var(--rf-accent)}
           [data-rf-footer] .rf-social:hover{background:rgba(255,255,255,.2)}
           [data-rf-footer] .rf-border{border-color:var(--rf-border)}
+          [data-rf-footer]{color:#fff}
+          [data-rf-footer] .max-w-7xl{max-width:80rem}
+          [data-rf-footer] .mx-auto{margin-left:auto;margin-right:auto}
+          [data-rf-footer] .px-4{padding-left:1rem;padding-right:1rem}
+          [data-rf-footer] .py-12{padding-top:3rem;padding-bottom:3rem}
+          [data-rf-footer] .grid{display:grid}
+          [data-rf-footer] .gap-8{gap:2rem}
+          [data-rf-footer] .mb-4{margin-bottom:1rem}
+          [data-rf-footer] .mb-8{margin-bottom:2rem}
+          [data-rf-footer] .mt-4{margin-top:1rem}
+          [data-rf-footer] .mt-5{margin-top:1.25rem}
+          [data-rf-footer] .pt-4{padding-top:1rem}
+          [data-rf-footer] .pb-4{padding-bottom:1rem}
+          [data-rf-footer] .pt-8{padding-top:2rem}
+          [data-rf-footer] .flex{display:flex}
+          [data-rf-footer] .inline-flex{display:inline-flex}
+          [data-rf-footer] .flex-col{flex-direction:column}
+          [data-rf-footer] .flex-wrap{flex-wrap:wrap}
+          [data-rf-footer] .items-center{align-items:center}
+          [data-rf-footer] .justify-center{justify-content:center}
+          [data-rf-footer] .gap-2{gap:.5rem}
+          [data-rf-footer] .gap-x-2{column-gap:.5rem}
+          [data-rf-footer] .gap-y-1{row-gap:.25rem}
+          [data-rf-footer] .space-x-2>*+*{margin-left:.5rem}
+          [data-rf-footer] .space-y-2>*+*{margin-top:.5rem}
+          [data-rf-footer] .space-y-4>*+*{margin-top:1rem}
+          [data-rf-footer] .w-4{width:1rem}
+          [data-rf-footer] .h-4{height:1rem}
+          [data-rf-footer] .w-8{width:2rem}
+          [data-rf-footer] .h-8{height:2rem}
+          [data-rf-footer] .w-10{width:2.5rem}
+          [data-rf-footer] .h-10{height:2.5rem}
+          [data-rf-footer] .rounded-lg{border-radius:.5rem}
+          [data-rf-footer] .rounded-2xl{border-radius:1rem}
+          [data-rf-footer] .border-t{border-top-width:1px;border-top-style:solid}
+          [data-rf-footer] .bg-white\\/10{background-color:rgba(255,255,255,.1)}
+          [data-rf-footer] .text-white{color:#fff}
+          [data-rf-footer] .text-center{text-align:center}
+          [data-rf-footer] .text-xs{font-size:.75rem;line-height:1rem}
+          [data-rf-footer] .text-sm{font-size:.875rem;line-height:1.25rem}
+          [data-rf-footer] .text-lg{font-size:1.125rem;line-height:1.75rem}
+          [data-rf-footer] .text-2xl{font-size:1.5rem;line-height:2rem}
+          [data-rf-footer] .font-bold{font-weight:700}
+          [data-rf-footer] .font-black{font-weight:900}
+          [data-rf-footer] .leading-none{line-height:1}
+          [data-rf-footer] .max-w-xs{max-width:20rem}
+          [data-rf-footer] .transition{transition:all .15s}
+          @media(min-width:640px){
+            [data-rf-footer] .sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}
+            [data-rf-footer] .sm\\:flex-row{flex-direction:row}
+            [data-rf-footer] .sm\\:items-center{align-items:center}
+            [data-rf-footer] .sm\\:justify-between{justify-content:space-between}
+          }
+          @media(min-width:768px){
+            [data-rf-footer] .md\\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+          }
+          @media(min-width:1024px){
+            [data-rf-footer] .lg\\:px-8{padding-left:2rem;padding-right:2rem}
+          }
         `}</style>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
