@@ -7,7 +7,8 @@ Jedno źródło prawdy dla **stopki** i **belki social** — design GastroReady,
 
 - `SiteFooter` — parametryzowana stopka (layout Gastro, kolory ze zmiennych CSS).
 - `Icon` — ikony social (facebook, youtube, linkedin, instagram).
-- Typy: `FooterConfig`, `FooterTheme`, `FooterColumn`, `FooterLink`, `SocialLink`, `CrossPromoBadge`, `FooterSlots`.
+- `PaymentMethodsRow` — rząd logotypów płatności pod CTA/checkoutem (inline SVG, self-contained).
+- Typy: `FooterConfig`, `FooterTheme`, `FooterColumn`, `FooterLink`, `SocialLink`, `CrossPromoBadge`, `FooterSlots`, `PaymentMethodKey`, `PaymentMethodsRowProps`.
 
 Komponent używa **wyłącznie uniwersalnych klas Tailwind** (layout) + **zmiennych CSS** (kolory),
 więc **nie wymaga** konfiguracji skanowania Tailwind (`@source`) w aplikacji konsumującej.
@@ -80,6 +81,20 @@ export function Footer() {
 **Motyw:** `theme.bg/accent/border/muted` to dowolny CSS color. Layout jest wspólny;
 żeby marka wyglądała 1:1 jak Gastro (zielono), podaj kolory Gastro. Żeby zachować
 tożsamość marki — podaj jej własne (host=teal, nails=pink).
+
+### PaymentMethodsRow
+
+```tsx
+import { PaymentMethodsRow } from "@ready/ui/PaymentMethodsRow";
+
+<PaymentMethodsRow methods={["blik", "visa", "mastercard", "payu"]} className="mt-3" />
+```
+
+**Ważne:** `methods` musi odzwierciedlać TYLKO realnie aktywną bramkę danej marki
+(sprawdź `app/api/checkout/route.ts` tego serwisu), nie "na zapas". Stan na 2026-07-18:
+wszystkie marki poza HostReady mają jedną aktywną bramkę — PayU (TPay wszędzie uśpiony,
+Stripe nigdzie poza HostReady niezintegrowany). HostReady ma realny dual-gateway
+(PayU dla PL/PLN, Stripe dla pozostałych lokalizacji) — jedyny przypadek z `"stripe"` w tablicy.
 
 ## Publikacja nowej wersji
 

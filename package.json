@@ -1,7 +1,7 @@
 {
   "name": "@ready/ui",
-  "version": "0.2.2",
-  "description": "Współdzielone komponenty UI + logika marek *Ready (Gastro/Host/Nails/Fizjo/Barber). Źródło prawdy dla stopki, belki social i powiadomień Telegram.",
+  "version": "0.3.0",
+  "description": "Współdzielone komponenty UI + logika marek *Ready (Gastro/Host/Nails/Fizjo/Barber/Budo/GPSR). Źródło prawdy dla stopki, belki social, logotypów płatności i powiadomień Telegram.",
   "license": "UNLICENSED",
   "type": "module",
   "sideEffects": false,
@@ -12,6 +12,7 @@
     ".": "./src/index.ts",
     "./SiteFooter": "./src/SiteFooter.tsx",
     "./Icon": "./src/Icon.tsx",
+    "./PaymentMethodsRow": "./src/PaymentMethodsRow.tsx",
     "./notifications": "./src/notifications.ts"
   },
   "files": [
