@@ -51,6 +51,8 @@ export function Icon({ name, className, style }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox={icon.viewBox}
       fill="currentColor"
+      width="1em"
+      height="1em"
       aria-hidden="true"
       className={className}
       style={style}
